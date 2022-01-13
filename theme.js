@@ -14,6 +14,8 @@
 ===========================================
 */
 
+// Set default theme
+setDefaultTheme();
 // Get local storage theme & bind to HTML 
 // Light theme set as default if none has been set in browser localStorage
 function setDefaultTheme()
@@ -27,7 +29,6 @@ function setDefaultTheme()
     document.getElementById("icon-mode").classList.add(iconMode);
     document.getElementById("icon-text").innerHTML = iconText;
 }
- 
 
 // Set theme according to user preference, default of light theme
 function setSelectedTheme()
