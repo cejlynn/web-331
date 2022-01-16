@@ -71,17 +71,17 @@ assign-results-text {
 
 /* Return link styling */
 .return-home:link {
-    color: #4f3674;
+    color: var(--anchor-color);
     text-decoration: none;
 }
 
 .return-home:visited {
-    color: #3c275a;
+    color: var(--anchor-color-visited);
 }
 
 .return-home:hover {
-    background-color: #d6a800;
-    color: #4f3674;
+    background-color: var(--anchor-color-hover);
+    color: var(--anchor-color);
 }
 
 /* Styling for form */
