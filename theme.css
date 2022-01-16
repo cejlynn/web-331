@@ -36,6 +36,8 @@ body.light-theme {
     --btn-hover-background-color: #d6a800;
     --btn-hover-color: #4f3674;
     --input-border-color: #ccc;
+    --anchor-color-visited: #3c275a;
+    --anchor-color-hover: #d6a800;
 }
 
 /* Dark theme */
@@ -57,6 +59,8 @@ body.dark-theme {
     --btn-hover-background-color: #7d4787;
     --btn-hover-color: #fff;
     --input-border-color: #303030;
+    --anchor-color-visited: #fff;
+    --anchor-color-hover: #d176e1;
 }
 
 body {
