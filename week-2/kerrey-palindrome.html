@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<!--
+============================================
+; Title: Assignment 2.2 - Environment Setup
+; File Name: kerrey-palindrome.html
+; Author: Professor Krasso
+; Date: 16 January 2022
+; Modified By: Seth Kerrey
+; Description: 
+;   An exercise to learn JavaScript strings and functions to create a Palindrome application.
+; Resources:
+;   The classes, id's & JavaScript were provided by Prof Krasso and Bellevue University including:
+;       CSS style guide
+;       "Web 330 HTML, CSS, and JavaScript Requirements"
+;       "Web 330 Assign_2.pdf"
+;   Google Fonts Oswald 
+;       https://fonts.google.com/specimen/Oswald
+;   Font Awesome CDN
+;      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css 
+;   MDN Date.prototype.toLocaleDateString()
+;       https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+;   W3Schools 
+;       length - https://www.w3schools.com/jsref/jsref_length_string.asp
+;       split - https://www.w3schools.com/jsref/jsref_split.asp
+;       reverse - https://www.w3schools.com/jsref/jsref_reverse.asp
+;       join - https://www.w3schools.com/jsref/jsref_join.asp
+;   StackOverFlow user p.s.w.g. 
+;       https://stackoverflow.com/questions/22075140/am-i-doing-this-split-reverse-join-correctly
+;       code used: "McDonalds".split("").reverse().join(""); // "sdlanoDcM"
+===========================================
+-->         
+        <!-- Title of HTML file -->
+        <title>WEB 330 – Enterprise JavaScript II</title>
+        
+        <!-- Links -->
+        <link rel="stylesheet" href="../theme.css">
+        <link rel="stylesheet" href="../site.css">
+        <script src="../theme.js" async></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+        <!-- CDN font-awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    </head>
+
+    <!-- Body with light theme default -->
+    <body class="light-theme">
+
+        <div class="assign-container">
+
+            <h1 class="app-header">Welcome to the Palindrome App!</h1>
+
+            <!-- Card container for user input -->
+            <div class="assign-content">
+                <div class="card">
+                    <div class="card-title">Palindrome Checker</div>
+                    <div class="card-content">
+                        <div class="form">
+
+                            <!-- Form for input -->
+                            <div class="form-field">
+                                <label for="txtPhrase">Phrase value:</label>
+                                <input type="text" class="input" id="txtPhrase" name="myPhrase" />
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-field">
+                                <button class="btn btn-primary full-width" id="btnCheckPhrase">Check Phrase</button>
+                            </div>
+                        </div>                            
+                    </div>
+                </div>            
+                <br>
+                <!-- Return link to landing page -->
+                <a href="../index.html" class="return-home">Return</a>
+            </div>
+            
+
+
+            <!--  -->
+            <div class="assign-container">
+                <div class="assign-content">
+                    <div class="card">
+                        <div class="card-title">Palindrome Results</div>
+                        <div class="card-content">
+                            
+                            <!-- Results -->
+                            <div id="assign-results-header"></div>
+                            <div id="assign-results" class="assign-results-text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            // Get current date
+            function getTodaysDate() {
+                return new Date().toLocaleDateString("en-US");
+            } console.log(getTodaysDate()); // Expected output DD/MM/YYYY
+
+            console.log(typeof(string));
+            // Get length of string
+            function getLength(string) {
+                return string.length;
+            }
+
+            // Reserve, split, and combine string
+            function reverse(string) {
+                return string.split("").reverse().join("");
+            } 
+
+            // Determine if palindrome
+            function isPalindrome(string) {
+                if (reverse(string) === string) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } 
+
+            // Register onclick event
+            document.getElementById("btnCheckPhrase").onclick = function() {
+                let txtPhrase = document.getElementById("txtPhrase").value;
+                let assignResults = document.getElementById("assign-results");
+                let today = getTodaysDate();
+                let len = getLength(txtPhrase);
+                let reversedPhrase = reverse(txtPhrase);
+                let header = `
+                    Date: ${today}<br>
+                    Original Phrase: ${txtPhrase}<br>
+                    Reversed Phrase: ${reversedPhrase}<br>
+                    Phrase Length: ${len}
+                `;
+                document.getElementById("assign-results-header").innerHTML = header; 
+                
+                if (isPalindrome(txtPhrase.toLowerCase()) === true) {
+                    assignResults.innerHTML = txtPhrase + " <u><b>is</b></u> a palindrome";
+                } else assignResults.innerHTML = txtPhrase + " <u><b>is not</b></u> a palindrome";
+                console.log(assignResults);
+            };
+        </script>
+    </body>
+</html>
