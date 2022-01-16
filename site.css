@@ -55,7 +55,7 @@ i {
     margin: 3% auto 0;
 }
 
-assign-results-text {
+.assign-results-text {
     text-align: center;
     font-size: 28px;
 }
