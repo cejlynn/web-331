@@ -20,51 +20,54 @@
 */
 
 export class Bill { // Export Bill class
-    constructor() {
-        this._beverages = [];
-        this._appetizers = [];
-        this._MainCourse = [];
-        this._desserts = [];
+    constructor(_beverages, _appetizers, _mainCourse, _desserts) {
+
+        _beverages = [];
+        _appetizers = [];
+        _mainCourse = [];
+        _desserts = [];
     }
-}
 
-function addBeverage(beverage) { //Function for adding beverages
-    this._beverages.push(beverage);
-}
+    addBeverage(beverage) { //Function for adding beverages
+        this._beverages.push(beverage);
+    }
 
-function addAppetizer(appetizer) { // Function for adding appetizers
-    this._appetizers.push(appetizer);
-}
+    addAppetizer(appetizer) { // Function for adding appetizers
+        this._appetizers.push(appetizer);
+    }
 
-function addMainCourse(mainCourse) { // Function for adding main course
-    this._MainCourse.push(mainCourse);
-}
+    addMainCourse(mainCourse) { // Function for adding main course
+        this._mainCourse.push(mainCourse);
+    }
 
-function addDessert(dessert) { // Function for adding desserts
-    this._desserts.push(dessert);
-}
+    addDessert(dessert) { // Function for adding desserts
+        this._desserts.push(dessert);
+    }
 
-function getTotal() { // Function for adding total
-    let total = 0;
-    
-    let beverageTotal = this._beverages.forEach(function(beverage)
-    {
-        total += parseFloat(beverage.price);
-    })
+    getTotal() { // Function for adding total
 
-    let appetizerTotal = this._appetizers.forEach(function(appetizer)
-    {
-        total += parseFloat(appetizer.price);
-    })
+        let total = 0;
+        
+        let beverageTotal = this._beverages.forEach(function(beverage)
+        {
+            total += parseFloat(beverage.price);
+        })
 
-    let mainCourseTotal = this._MainCourse.forEach(function(mainCourse)
-    {
-        total += parseFloat(mainCourse.price);
-    })
+        let appetizerTotal = this._appetizers.forEach(function(appetizer)
+        {
+            total += parseFloat(appetizer.price);
+        })
 
-    let dessertTotal = this._desserts.forEach(function(dessert)
-    {
-        total += parseFloat(dessert.price);
-    })
-    return total.toFixed(2); // Return total
+        let mainCourseTotal = this._mainCourse.forEach(function(mainCourse)
+        {
+            total += parseFloat(mainCourse.price);
+        })
+
+        let dessertTotal = this._desserts.forEach(function(dessert)
+        {
+            total += parseFloat(dessert.price);
+        })
+        console.log(total);
+        return total.toFixed(2); // Return total
+    }
 }
