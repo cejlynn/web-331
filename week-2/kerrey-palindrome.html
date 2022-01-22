@@ -105,7 +105,6 @@
                 return new Date().toLocaleDateString("en-US");
             } console.log(getTodaysDate()); // Expected output DD/MM/YYYY
 
-            console.log(typeof(string));
             // Get length of string
             function getLength(string) {
                 return string.length;
@@ -127,11 +126,11 @@
 
             // Register onclick event
             document.getElementById("btnCheckPhrase").onclick = function() {
-                let txtPhrase = document.getElementById("txtPhrase").value;
-                let assignResults = document.getElementById("assign-results");
-                let today = getTodaysDate();
-                let len = getLength(txtPhrase);
-                let reversedPhrase = reverse(txtPhrase);
+                let txtPhrase = document.getElementById("txtPhrase").value; // Bind input value
+                let assignResults = document.getElementById("assign-results"); // Assign-results div to variable
+                let today = getTodaysDate(); // Date
+                let len = getLength(txtPhrase); // Length of input
+                let reversedPhrase = reverse(txtPhrase); // Reversed input
                 let header = `
                     Date: ${today}<br>
                     Original Phrase: ${txtPhrase}<br>
@@ -140,10 +139,10 @@
                 `;
                 document.getElementById("assign-results-header").innerHTML = header; 
                 
+                // If...else to check if input is a palindrome
                 if (isPalindrome(txtPhrase.toLowerCase()) === true) {
                     assignResults.innerHTML = txtPhrase + " <u><b>is</b></u> a palindrome";
                 } else assignResults.innerHTML = txtPhrase + " <u><b>is not</b></u> a palindrome";
-                console.log(assignResults);
             };
         </script>
     </body>
