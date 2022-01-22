@@ -173,7 +173,7 @@
 
             // Register onclick event
             document.getElementById("btnOrder").onclick = function() {
-            
+
                 // Bind to input variables
                 const beveragesEl = document.getElementById("beverages");
                 const beverages = beveragesEl.getElementsByTagName("input");
@@ -181,7 +181,7 @@
                 const appetizersEl = document.getElementById("appetizers");
                 const appetizers = appetizersEl.getElementsByTagName("input");
                 
-                const mainCoursesEl = document.getElementById("main-courses");
+                const mainCoursesEl = document.getElementById("main-course");
                 const mainCourses = mainCoursesEl.getElementsByTagName("input");
 
                 const dessertsEl = document.getElementById("desserts");
@@ -214,7 +214,7 @@
                 for (let dessert of desserts)
                 {
                     if (dessert.checked) {
-                        bill.addDessert(new Appetizer(appetizer.name, appetizer.value))
+                        bill.addDessert(new Dessert(dessert.name, dessert.value))
                     }
                 }
 
