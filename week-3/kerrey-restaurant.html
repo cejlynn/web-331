@@ -31,6 +31,7 @@
         <!-- Links -->
         <link rel="stylesheet" href="../theme.css">
         <link rel="stylesheet" href="../site.css">
+        <link rel="stylesheet" href="restaurant.css">
         <script src="../theme.js" async></script>
 
         <!-- Google Fonts -->
@@ -40,7 +41,6 @@
 
         <!-- CDN font-awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
     </head>
 
     <!-- Body with light theme default -->
@@ -56,10 +56,12 @@
                     <div class="card-title">Restaurant Menu</div>
                     <div class="card-content">
 
+                        <div class="boxes">
+                                
                         <!-- Beverages card -->
                         <div class="assign-container">
                             <div class="assign-content">
-                                <div class="card">
+                                <div class="cards">
                                     <div class="card-title">Beverages</div>
                                     <div class="card-content" id="beverages">
                                         
@@ -83,7 +85,7 @@
                         <!-- Appetizer card -->
                         <div class="assign-container">
                             <div class="assign-content">
-                                <div class="card">
+                                <div class="cards">
                                     <div class="card-title">Appetizers</div>
                                     <div class="card-content" id="appetizers">
                                         
@@ -107,7 +109,7 @@
                         <!-- Main Courses card -->
                         <div class="assign-container">
                             <div class="assign-content">
-                                <div class="card">
+                                <div class="cards">
                                     <div class="card-title">Main Course</div>
                                     <div class="card-content" id="main-course">
                                         
@@ -131,7 +133,7 @@
                         <!-- Desserts card -->
                         <div class="assign-container">
                             <div class="assign-content">
-                                <div class="card">
+                                <div class="cards">
                                     <div class="card-title">Desserts</div>
                                     <div class="card-content" id="desserts">
                                         
@@ -152,18 +154,17 @@
                         </div>                
                     </div>
                 </div>        
-                
-                <br>
-                <!-- Return link to landing page -->
-                <a href="../index.html" class="return-home">Return</a>
-
             </div>
-                <!-- Order Summary card-->
-                <div class="card">
-                    <div class="card-title">Order Summary</div>
-                    <div class="card-content assign-results-text" id="order-total"></div>
-                </div>
 
+            <br>
+            <!-- Return link to landing page -->
+            <a href="../index.html" class="return-home">Return</a>
+            </div>
+            <!-- Order Summary card-->
+            <div class="card">
+                <div class="card-title">Order Summary</div>
+                <div class="card-content assign-results-text" id="order-total"></div>
+            </div>
         </div>
 
         <script type="module">
