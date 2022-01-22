@@ -6,7 +6,7 @@
 ; Date: 23 January 2022
 ; Modified By: Seth Kerrey
 ; Description: 
-;   Script for the restaurant.html file
+;   Script for the kerrey-restaurant.html file
 ; Resources: 
 ;   JavaScript code was taken from "WEB 330 Assign_3.pdf" 
 ;   	Functions, parameters, classes, constructors 
