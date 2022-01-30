@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<!--
+============================================
+; Title: Assignment 4.2 - Calorie App
+; File Name: kerrey-calorie.html
+; Author: Professor Krasso
+; Date: 30 January 2022
+; Modified By: Seth Kerrey
+; Description: 
+;   An exercise to working with static properties and methods and built-in JavaScript functions with lambda expressions.
+; Resources:
+;   The classes, id's & JavaScript were provided by Prof Krasso and Bellevue University including:
+;       CSS style guide
+;       "Web 330 HTML, CSS, and JavaScript Requirements"
+;       "Web 330 Assign_4.pdf"
+;   Google Fonts Oswald 
+;       https://fonts.google.com/specimen/Oswald
+;   Font Awesome CDN
+;      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css 
+;   Event Listener for keyup code basis used from CodeGrepper
+;       https://www.codegrepper.com/code-examples/javascript/addeventlistener+enter+key
+;   MDN Event Listener
+;       https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+===========================================
+-->         
+        <!-- Title of HTML file -->
+        <title>WEB 330 – Enterprise JavaScript II</title>
+        
+        <!-- Links -->
+        <link rel="stylesheet" href="../theme.css">
+        <link rel="stylesheet" href="../site.css">
+        <link rel="stylesheet" href="kerrey-calorie.css">
+        <script src="../theme.js" async></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+        <!-- CDN font-awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+
+    <!-- Body with light theme default -->
+    <body class="light-theme">
+
+        <div class="assign-container">
+            <h1 class="app-header">Welcome to the Calorie App!</h1>
+
+            <!-- Card container for user input -->
+            <div class="assign-content">
+                <div class="card">
+                    <div class="card-title">Calorie Search Form</div>
+                    <div class="card-content">
+
+                        <div class="form">
+                            <div class="form-field">
+                                <label for="txtFoodItem">Enter a food item:</label>
+                                <input type="text" class="input" id="txtFoodItem" name="myFoodItem" />
+                            </div>
+                            <span id="foodList"></span>
+                            
+                            <div class="form-field">
+                                <button class="btn btn-primary full-width" id="btnSearch">Search</button>
+                            </div>
+
+                        </div>    
+                    </div>
+                </div>
+
+            <br>
+            <!-- Return link to landing page -->
+            <a href="../index.html" class="return-home">Return</a>
+            </div>
+            
+        </div>
+
+        <div class="assign-container">
+            <div class="assign-content">
+                <div class="card">
+                    <div class="card-title">Search Results</div>
+                    <div class="card-content assign-results-text" id="searchResults">
+                        <!-- table populates here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="module">
+
+            import { CalorieConverter } from "./calorie-converter.js" // Import CalorieConverter Class
+
+            const txtFoodItemEl = document.getElementById("txtFoodItem"); // Assign to input field
+
+
+            // Register onclick event
+            document.getElementById("btnSearch").onclick = function() {
+
+                let txtFoodItem = txtFoodItemEl.value; // Assign to value
+                
+                let foods = CalorieConverter.find(txtFoodItem.toLowerCase()); // Inputted value toLowerCase
+
+                // Create table
+                let tableData = `
+                    <table>
+                        <thead>
+                            <th>Name</th>
+                            <th>Calories</th>
+                        </thead>`;
+
+                // Iterate through name/calorie variables for table
+                for (let food of foods) {
+                    tableData += `
+                        <tr>
+                            <td>${food.name}</td>
+                            <td>${food.calories}</td>
+                        </tr>`;
+                        
+                }
+
+                let closeTable = `</table>`;
+                document.getElementById("searchResults").innerHTML = tableData + closeTable; // Bind to table
+            }
+
+            // Enter button pressed for input
+            // Code basis used from CodeGrepper
+            document.getElementById("txtFoodItem").addEventListener("keyup", (event)=> {
+                if (event.keyCode === 13) {
+                    document.getElementById("btnSearch").click();
+                }
+            });
+
+            let foodList = CalorieConverter.data; // Call static field
+
+            // Build <i> string
+            let foodListData = `<i>(Ex: `;
+
+            for (let food of foodList) {
+                foodListData += `${food.name}, `;
+            }
+
+            document.getElementById("foodList").innerHTML = foodListData.slice(0,-2) + `)</i>`; // Bind <i> string
+            
+        </script>
+    </body>
+</html>
