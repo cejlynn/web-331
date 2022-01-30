@@ -98,3 +98,34 @@ i {
     width: 100%;
 }
 
+/* 
+    Table styling
+    added from web-330/week-7
+*/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+th {
+    padding: 12px 0px;
+    text-align: left;
+    background-color: var(--table-header-background-color);
+    color: var(--table-header-color);
+}
+
+td, th {
+    border: 1px solid var(--table-border-color);
+}
+
+tr:hover {
+    background-color: var(--table-hover-background-color);
+    color: var(--table-hover-color);
+    cursor: pointer;
+}
+
+th, td {
+    padding: 10px;
+}

@@ -38,6 +38,13 @@ body.light-theme {
     --input-border-color: #ccc;
     --anchor-color-visited: #3c275a;
     --anchor-color-hover: #d6a800;
+    /* added in assignment 4.2 */
+    --table-header-background-color: #4F3674;
+    --table-header-color: #fff;
+    --table-border-color: #ddd;
+    --table-hover-background-color: #D6A800;
+    --table-hover-color: #4F3674;
+
 }
 
 /* Dark theme */
@@ -61,6 +68,13 @@ body.dark-theme {
     --input-border-color: #303030;
     --anchor-color-visited: #fff;
     --anchor-color-hover: #d176e1;
+    /* added in assignment 4.2 */
+    --table-header-background-color: #D176E1;
+    --table-header-color: #fff;
+    --table-border-color: #303030;
+    --table-hover-background-color: #7D4787;
+    --table-hover-color: #fff;
+
 }
 
 body {
