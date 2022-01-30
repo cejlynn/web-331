@@ -95,7 +95,6 @@
 
             const txtFoodItemEl = document.getElementById("txtFoodItem"); // Assign to input field
 
-
             // Register onclick event
             document.getElementById("btnSearch").onclick = function() {
 
@@ -118,12 +117,11 @@
                             <td>${food.name}</td>
                             <td>${food.calories}</td>
                         </tr>`;
-                        
                 }
 
                 let closeTable = `</table>`;
                 document.getElementById("searchResults").innerHTML = tableData + closeTable; // Bind to table
-            }
+            } // End of onclick event
 
             // Enter button pressed for input
             // Code basis used from CodeGrepper
