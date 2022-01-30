@@ -1,0 +1,27 @@
+/*
+============================================
+; Title: Assignment 4.2 - Calorie App
+; File Name: kerrey-calorie.css
+; Author: Professor Krasso
+; Date: 30 January 2022
+; Modified By: Seth Kerrey
+; Description: 
+;   Styling for the kerrey-calorie.html file.
+; Resources: 
+;   CSS style, classes, and id's came from guidance in the assignment instructions, 
+;   style guide & buwebdev repo/web-330
+;       https://github.com/buwebdev/web-330 
+;       "WEB 330 HTML, CSS, and JavaScript Requirements.pdf"
+===========================================
+*/
+
+#foodList {
+    float: right;
+    color: #df546a;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+table {
+    width: 20% !important; /* to look like final result */
+}
