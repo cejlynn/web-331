@@ -1,0 +1,46 @@
+/*
+============================================
+; Title: Assignment 5.2 - Bob's Automotive Repair Shop
+; File Name: kerrey-bobs-auto-repair.css
+; Author: Professor Krasso
+; Date: 6 February 2022
+; Modified By: Seth Kerrey
+; Description: 
+;   Styling for the kerrey-bobs-auto-repair.html file.
+; Resources: 
+;   CSS style, classes, and id's came from guidance in the assignment instructions, 
+;   style guide & buwebdev repo/web-330
+;       https://github.com/buwebdev/web-330 
+;       "WEB 330 HTML, CSS, and JavaScript Requirements.pdf"
+===========================================
+*/
+
+#cart-message {
+    float: left;
+    color: #df546a;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-left: 0px;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+table {
+    width: 50% !important; /* to look like final result */
+}
+
+cart-component {
+    font-size: 30px;
+}
+
+i {
+    padding: 0px !important; /* overwrites padding-right: 111px */
+    
+}
+
+#iconColor {
+    text-align: center;
+    color: var(--btn-background-color);
+}
