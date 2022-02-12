@@ -20,6 +20,8 @@
 ;       https://fonts.google.com/specimen/Oswald
 ;   Font Awesome CDN
 ;      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css 
+;   MDN 
+;       Date - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
 ===========================================
 -->         
         <!-- Title of HTML file -->
@@ -28,6 +30,7 @@
         <!-- Links -->
         <link rel="stylesheet" href="../theme.css">
         <link rel="stylesheet" href="../site.css">
+        <link rel="stylesheet" href="../flex-layout.css">
         <link rel="stylesheet" href="kerrey-future-value.css">
         <script src="../theme.js" async></script>
 
@@ -44,36 +47,59 @@
     <body class="light-theme">
 
         <div class="assign-container">
-            <h1 class="app-header">Welcome to Bob's Automotive Repair Shop!</h1>
+            <h1 class="app-header">Welcome to the Future Value App!</h1>
 
             <!-- Card container for user input -->
             <div class="assign-content">
-                
                 <div class="card">
-                    <div class="card-title">Product Listing</div>
-                    <cart-component></cart-component> <!-- Add icon -->
+                    <div class="card-title">Future Value Calculator</div>
                     <div class="card-content">
 
-                        <!-- Form for input -->
-                        <div class="form-field">
-                            <label for="productList">Choose a product:</label>
+                        <div class="row">
+                            <div class="col-12 danger" id="errorLog"></div>
+                        </div>
+                        
+                        <div class="form">
+
+                            <div class="row">
+                                <div class="col-5 form-field">Monthly Payment:</div>
+                                <input type="text" class="col-7 input form-field form-label" id="txtMonthlyPayment">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-5 form-field">Interest Rate:</div>
+                                <input type="text" class="col-7 input form-field form-label" id="txtYearlyRate">
+                            </div>
+
+                            <!-- Danger message -->
+                            <i class="danger">
+                                Enter 11.1% as 11.1.
+                            </i>
                             
-                            <select name="drop-down-menu" class="drop-down-menu" id="productList">
-                                <option value="select">--Select--</option>
-                                <option value="19.99">Oil Change</option>
-                                <option value="18.44">Filer Replacement</option>
-                                <option value="9.99">Wiper Fluid Refill</option>
-                            </select>
+                            <div class="row">
+                                <div class="col-5 form-field">Number of Years:</div>
+                                <select class="col-7 drop-down-menu" id="listNumOfYears">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
 
-                            <i id="cart-message">To view your shopping cart click on the cart icon</i>
+                            <!-- Button -->
+                            <div class="row">
+                                <div class="form-field">
+                                    <button class="btn btn-primary full-width" id="btnCalculate">Calculate</button>
+                                </div>
+                            </div>
 
                         </div>
-
-                        <!-- Button -->
-                        <div class="form-field">
-                            <button class="btn btn-primary full-width" id="btnAddProduct">Add to Cart</button>
-                        </div>
-
                     </div>
                 </div>
 
@@ -87,9 +113,9 @@
         <div class="assign-container">
             <div class="assign-content">
                 <div class="card">
-                    <div class="card-title">Shopping Cart</div>
-                    <div class="card-content assign-results-text" id="shoppingCart">
-                        <!-- Populate table here -->
+                    <div class="card-title">Calculation as of <span id="today"></span></div>
+                    <div class="card-content assign-results-text" id="futureValue">
+                        <!--Populate futureValue here -->
                     </div>
                 </div>
             </div>
@@ -97,56 +123,72 @@
 
         <script type="module">
 
-            import { Product } from "./product.js" // Import Product class
-            import { ShoppingCart} from "./shopping-cart.js" // Import ShoppingCart class
+            // Import statements
+            import { FinanceCalculator } from "./finance-calculator.js";
+            import { Validator } from "./validator.js";           
 
-            let shoppingCart = new ShoppingCart(); // New object
-
-            setCartCount(); // Call function
-
-            // Register onclick event
-            document.getElementById("btnAddProduct").onclick = function() {
-                let productList = document.getElementById("productList");
-                let product = productList.options[productList.selectedIndex].text;  // Code Provided by Prof Krasso
-                let productValue = productList.options[productList.selectedIndex].value; // Code Provided by Prof Krasso
-                
-                if (product !== "--Select--") {
-                    shoppingCart.addProduct(new Product(product, productValue));
-                    setCartCount();
-                    alert(product + " was added to your shopping cart!");
-                    productList.value = "select";
-                }
-                
-            }
+            // Local date
+            document.getElementById("today").innerHTML = new Date().toLocaleDateString("en-US");
 
             // Register onclick event
-            document.getElementById("cartIcon").onclick = function() { // Icon button
-                let cartDisplayTable = `
-                    <table>
-                        <thead>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                        </thead>`;
+            document.getElementById("btnCalculate").onclick = function() {
+                
+                // Declare values;
+                let monthlyPayment = document.getElementById("txtMonthlyPayment").value;
+                let rate = document.getElementById("txtYearlyRate").value;
+                let years = document.getElementById("listNumOfYears").value;
+                let errorLogEl = document.getElementById("errorLog");
 
-                // Iterate through name/calorie variables for table
-                for (let products of shoppingCart) {
-                    cartDisplayTable += `
-                        <tr>
-                            <td>${products.id}</td>
-                            <td>${products.name}</td>
-                            <td>${products.price}</td>
-                        </tr>`;
+                // Instantiate new Validator class
+                let monthlyPaymentValidator = new Validator("Monthly Payment", monthlyPayment); 
+
+                // Call field functions to monthlyPaymentValidator variable
+                monthlyPaymentValidator.addRequiredField();
+                monthlyPaymentValidator.addRequiredFloatField();
+                monthlyPaymentValidator.addFloatMinField(100);
+
+                // Instantiate new Validator class
+                let rateValidator = new Validator("Interest Rate", rate); 
+
+                // Call field functions to rateValidator variable
+                rateValidator.addRequiredField();
+                rateValidator.addRequiredFloatField();
+                rateValidator.addFloatMaxField(100);
+
+                let errorLog = []; 
+
+                // Output error message if not true for monthlyPaymentValidator
+                if (!monthlyPaymentValidator.validate()) {
+                    for (let msg of monthlyPaymentValidator.messages) {
+                        errorLog.push(msg);
+                    }
                 }
 
-                cartDisplayTable += `</table>`; // Close table
-                document.getElementById("shoppingCart").innerHTML = cartDisplayTable; // Bind to table
-            }
+                // Output error message if not true for rateValidator
+                if (!rateValidator.validate()) {
+                    for (let msg of rateValidator.messages) {
+                        errorLog.push(msg);
+                    }
+                }
 
-            function setCartCount() {
-                document.getElementById('cart-count').innerHTML = shoppingCart.count(); // Add new shopping cart item
+                if (monthlyPaymentValidator.validate() && rateValidator.validate()) {
+                    errorLogEl.innerHTML = "";
+                    let futureValue = FinanceCalculator.calculateFutureValue(monthlyPayment, rate, years);
+                    document.getElementById("futureValue").innerHTML = "The future value is " + 
+                        FinanceCalculator.convertToCurrency(futureValue); // Get converted currency value
+                } else { 
+                    // Else display error message
+                    errorLogEl.innerHTML = "";
+                    let errorLogMessage = `<ul>`; // Start ul for error message
+                    for (let msg of errorLog) { // Build error li message
+                        errorLogMessage += `<li>${msg}</li>`;
+                    }
+
+                    errorLogMessage += `</ul>`; // End ul for error message
+                    errorLogEl.innerHTML = errorLogMessage; // Bind to DOM
+                }
+
             }
-                
         </script>
     </body>
 </html>
